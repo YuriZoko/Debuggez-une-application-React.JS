@@ -19,9 +19,14 @@ const Page = () => {
     if (!data || !data.events || data.events.length === 0) {
       return null;
     }
-    return data.events[data.events.length - 1];
+    return data.events.reduce((latest, current) => {
+      const latestDate = new Date(latest.date);
+      const currentDate = new Date(current.date);
+  
+      return currentDate > latestDate ? current : latest;
+    });
   })();
-
+  
   return <>
     <header>
       <Menu />
