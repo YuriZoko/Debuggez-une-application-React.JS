@@ -13,19 +13,8 @@ import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
-  const { data } = useData();
-
-  const lastEvent = (() => {
-    if (!data || !data.events || data.events.length === 0) {
-      return null;
-    }
-    return data.events.reduce((latest, current) => {
-      const latestDate = new Date(latest.date);
-      const currentDate = new Date(current.date);
   
-      return currentDate > latestDate ? current : latest;
-    });
-  })();
+  const { lastEvent } = useData();
   
   return <>
     <header>
